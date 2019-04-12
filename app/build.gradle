@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.example.asus.qrcode"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    androidTestCompile('com.android.support:support-annotations:26.1.0') {
+        force = true
+    }
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'cn.bingoogolapple:bga-qrcode-zxing:1.2.9'
+    implementation 'cn.bingoogolapple:bga-flowlayout:1.0.0@aar'
+    /*
+          从相册选取二维码图片，这里为了方便演示，使用的是
+          https://github.com/bingoogolapple/BGAPhotoPicker-Android
+          这个库来从图库中选择二维码图片，这个库不是必须的，你也可以通过自己的方式从图库中选择图片
+        */
+    implementation 'cn.bingoogolapple:bga-photopicker:1.2.8@aar'
+    implementation 'cn.bingoogolapple:bga-baseadapter:1.2.9@aar'
+    implementation 'pub.devrel:easypermissions:1.0.1'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    compile('com.github.bumptech.glide:glide:4.5.0') {
+        exclude group: "com.android.support"
+    }
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation files('libs/RScode.jar')
+}
